@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  mention: 
+  mention_email: MyString
+  mention_text: MyString
+  prompt: 
+  favorite: false
+
+two:
+  user: 
+  mention: 
+  mention_email: MyString
+  mention_text: MyString
+  prompt: 
+  favorite: false

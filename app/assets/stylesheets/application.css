@@ -1,0 +1,76 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: url(/assets/opal.png) no-repeat right bottom; 
+  background-size: 150px;
+  padding: 0;
+  margin: 0;
+  font-family: Arial,sans-serif;
+  color: #333;
+}
+
+div#container {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#navigation {
+  background-color: black;
+  padding: 10px;
+  box-shadow: -1px 3px 3px #aaaaaa;
+}
+
+div#navigation li {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+div#navigation a {
+  color: white;
+}
+
+div#navigation h3 {
+  color: white;
+  margin-top: 16px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+input {
+  margin: 10px 0;
+}
+
+input[type=text] {
+  height: 20px;
+}
+
+input[type=submit] {
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #eee;
+  color: white;
+  margin-bottom: 10px;
+}

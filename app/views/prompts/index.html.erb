@@ -1,0 +1,27 @@
+<h1>Listing prompts</h1>
+
+<table>
+  <tr>
+    <th>Phrase</th>
+    <th>Business</th>
+    <th>Personal</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @prompts.each do |prompt| %>
+  <tr>
+    <td><%= prompt.phrase %></td>
+    <td><%= prompt.business? ? 'yes' : 'no'  %></td>
+    <td><%= prompt.personal? ? 'yes' : 'no'  %></td>
+    <td><%= link_to 'Show', prompt %></td>
+    <td><%= link_to 'Edit', edit_prompt_path(prompt) %></td>
+    <td><%= link_to 'Destroy', prompt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Prompt', new_prompt_path %>

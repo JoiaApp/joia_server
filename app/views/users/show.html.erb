@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= '*' * @user.password.length if @user.password.present? %>
+</p>
+
+
+<p><b>Group Membership:</b></p>
+<% @user.groups.each do |group| %>
+  <p><%= link_to group.name, group %></p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

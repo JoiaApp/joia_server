@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  personal: false
+  business: false
+  phrase: MyText
+
+two:
+  personal: false
+  business: false
+  phrase: MyText

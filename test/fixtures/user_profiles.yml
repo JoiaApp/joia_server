@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  image: MyString
+  reminder_time: 2016-10-30 10:20:50
+
+two:
+  user: 
+  image: MyString
+  reminder_time: 2016-10-30 10:20:50

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Phrase:</b>
+  <%= @prompt.phrase %>
+</p>
+
+<p>
+  <b>Business:</b>
+  <%= @prompt.business? ? 'yes' : '' %>
+</p>
+
+<p>
+  <b>Personal:</b>
+  <%= @prompt.personal? ? 'yes' : '' %>
+</p>
+
+
+<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+<%= link_to 'Back', prompts_path %>

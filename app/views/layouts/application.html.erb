@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Joia Admin Console</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="navigation">
+    <h3 style="float:right;">Joia Admin</h3>
+    <ul>
+      <li><%= link_to 'Users', users_path %></li>
+      <li><%= link_to 'Groups', groups_path %></li>
+      <li><%= link_to 'Sponsors', sponsors_path %></li>
+      <li><%= link_to 'Prompts', prompts_path %></li>
+    </ul>
+  </div>
+
+  <div id="container">
+    <%= yield %>
+  </div>
+
+</body>
+</html>
