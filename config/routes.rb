@@ -1,4 +1,4 @@
-Srv::Application.routes.draw do
+Joia::Application.routes.draw do
 
   resources :users do
     post :login, :on => :collection
