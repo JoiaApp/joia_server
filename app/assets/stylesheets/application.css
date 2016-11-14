@@ -44,6 +44,7 @@ div#navigation li {
 
 div#navigation a {
   color: white;
+  text-decoration: none;
 }
 
 div#navigation h3 {

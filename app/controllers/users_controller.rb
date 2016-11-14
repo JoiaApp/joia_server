@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :current_user
   # GET /users
   # GET /users.json
   def index
@@ -7,6 +8,18 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
+    end
+  end
+
+  def login
+    @user = User.find_by_email(params[:email])
+    if @user and @user.password == params[:password]
+      respond_to do |format|
+        session[:user_id] = @user.id
+        format.json { render json: @user }
+      end
+    else
+      head 403
     end
   end
 
@@ -47,6 +60,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
+#puts @user.errors.first
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

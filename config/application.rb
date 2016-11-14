@@ -58,5 +58,7 @@ module Srv
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.session_store :cookie_store
   end
 end
