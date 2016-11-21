@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
     end
   end
 
+
   # GET /groups/1
   # GET /groups/1.json
   def show
@@ -57,18 +58,28 @@ class GroupsController < ApplicationController
     end
   end
 
-  # POST groups/1/join
+  # POST groups/[guid]/invite
+  def invite
+    @group = Group.find_by_guid(params[:id])
+    InviteMailer.invite_email(params[:email], @group, current_user).deliver
+    respond_to do |format|
+      format.html { redirect_to @group }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST groups/[guid]/join
   def join
-    @group = Group.find(params[:id])
+    @group = Group.find_by_guid(params[:id])
     @user = User.find(join_params[:user_id])
 
-    user_group = UsersGroups.new(user_id: @user.id, group_id: @group.id)
+    user_group = UserGroup.new(user_id: @user.id, group_id: @group.id)
     respond_to do |format|
       if user_group.save
         format.html { redirect_to @group }
         format.json { render json: @group }
       else
-        format.json { render json: "Unprocessable entity", status: :unprocessable_entity }
+        format.json { render json: { error: user_group.errors.first.second }, status: :unprocessable_entity }
       end
     end
   end
@@ -76,10 +87,10 @@ class GroupsController < ApplicationController
   # PUT /groups/1
   # PUT /groups/1.json
   def update
-    @group = Group.find(params[:id])
+    @group = Group.find_by_guid(params[:id])
 
     respond_to do |format|
-      if @group.update_attributes(params[:group])
+      if @group.update_attributes(update_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
@@ -105,5 +116,9 @@ private
 
   def join_params
     params.permit(:user_id, :group_id)
+  end
+
+  def update_params
+    params.require(:group).permit(:name)
   end
 end

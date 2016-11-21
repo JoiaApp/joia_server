@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   before_create :generate_token
 
   belongs_to :business
+  has_many :responses
   has_many :user_group
   has_many :users, :through => :user_group
   attr_accessible :name, :password, :personal

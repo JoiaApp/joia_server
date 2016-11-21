@@ -60,11 +60,15 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-#puts @user.errors.first
         format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: { error: @user.errors.first.join(' ').capitalize }, status: :unprocessable_entity }
       end
     end
+  end
+
+  def groups
+    @user = User.find(params[:id])
+    render json: @user.groups
   end
 
   # PUT /users/1

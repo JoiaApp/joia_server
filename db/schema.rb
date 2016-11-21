@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161113174356) do
+ActiveRecord::Schema.define(:version => 20161120061135) do
 
   create_table "entries", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20161113174356) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "guid"
+    t.integer  "owner_id"
   end
 
   add_index "groups", ["business_id"], :name => "index_groups_on_business_id"
@@ -47,6 +48,19 @@ ActiveRecord::Schema.define(:version => 20161113174356) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "responses", :force => true do |t|
+    t.string   "text"
+    t.integer  "prompt_id"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "responses", ["group_id"], :name => "index_responses_on_group_id"
+  add_index "responses", ["prompt_id"], :name => "index_responses_on_prompt_id"
+  add_index "responses", ["user_id"], :name => "index_responses_on_user_id"
 
   create_table "sponsors", :force => true do |t|
     t.string   "name"
@@ -63,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20161113174356) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "user_groups", ["group_id", "user_id"], :name => "index_user_groups_on_group_id_and_user_id", :unique => true
   add_index "user_groups", ["group_id"], :name => "index_user_groups_on_group_id"
   add_index "user_groups", ["user_id"], :name => "index_user_groups_on_user_id"
 
