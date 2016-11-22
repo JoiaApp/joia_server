@@ -12,6 +12,7 @@ class Group < ActiveRecord::Base
 
   def generate_token
     self.guid = SecureRandom.hex(4)
+    self.password = "%03d" % (rand * 1000)
   end
 
   def to_param
