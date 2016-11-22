@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+
+  before_filter :current_user, :if => :json, :except => [:create, :show]
+
   # GET /groups
   # GET /groups.json
   def index
@@ -39,7 +42,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @group = Group.find(params[:id])
+    @group = Group.find_by_guid(params[:id])
   end
 
   # POST /groups
@@ -103,7 +106,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
-    @group = Group.find(params[:id])
+    @group = Group.find_by_guid(params[:id])
     @group.destroy
 
     respond_to do |format|

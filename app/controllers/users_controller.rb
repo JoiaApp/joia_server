@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_filter :current_user
+
+  before_filter :current_user, :if => :json, :except => [:login, :create]
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -27,7 +28,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -38,7 +38,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -50,13 +49,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def groups
+    @user = User.find(params[:id])
+    render json: @user.groups
+  end
+
   # POST /users
   # POST /users.json
   def create
     @user = User.new(create_params)
-
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -66,16 +70,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def groups
-    @user = User.find(params[:id])
-    render json: @user.groups
-  end
-
   # PUT /users/1
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -92,7 +90,6 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }

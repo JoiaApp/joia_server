@@ -3,6 +3,7 @@ class ResponsesController < ApplicationController
   # GET /responses.json
   def index
     @group = Group.find_by_guid(params[:group_id])
+    @responses = @group.responses
 
     respond_to do |format|
       format.html # index.html.erb

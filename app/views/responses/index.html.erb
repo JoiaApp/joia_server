@@ -1,10 +1,11 @@
 <h1>Listing responses</h1>
 
+<h3><%= @group.name %> thread</h3>
+
 <table>
   <tr>
     <th>Text</th>
     <th>User Name</th>
-    <th>Group Name</th>
     <th>Created</th>
     <th></th>
     <th></th>
@@ -15,15 +16,7 @@
   <tr>
     <td><%= response.text %></td>
     <td><%= response.user.name %></td>
-    <td><%= response.group.name %></td>
     <td><%= time_ago_in_words(response.created_at) %> ago</td>
-    <td><%= link_to 'Show', response %></td>
-    <td><%= link_to 'Edit', edit_response_path(response) %></td>
-    <td><%= link_to 'Destroy', response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Response', new_response_path %>
