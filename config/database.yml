@@ -14,9 +14,17 @@ test:
 
 production:
   adapter: postgresql
-  host: joia-staging.cne4kttu5xjs.us-west-2.rds.amazonaws.com
-  database: joia
-  pool: 5
-  timeout: 5000
-  username: <%= ENV['JOIA_DB_USER'] %>
-  password: <%= ENV['JOIA_DB_PASSWORD'] %>
+  encoding: unicode
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
+
+#adapter: postgresql
+#host: joia-staging.cne4kttu5xjs.us-west-2.rds.amazonaws.com
+#database: joia
+#pool: 5
+#timeout: 5000
+#username: <%= ENV['JOIA_DB_USER'] %>
+#password: <%= ENV['JOIA_DB_PASSWORD'] %>
