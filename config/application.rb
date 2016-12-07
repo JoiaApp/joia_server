@@ -65,8 +65,8 @@ module Joia
     config.action_mailer.smtp_settings = {
       :address              => 'email-smtp.us-west-2.amazonaws.com',
       :port                 => 587,
-      :user_name            => '',
-      :password             => '',
+      :user_name            => ENV['JOIA_SES_USER'],
+      :password             => ENV['JOIA_SES_PASSWORD'],
       :authentication       => :login,
       :enable_starttls_auto => true
     }
