@@ -14,7 +14,10 @@ class UsersController < ApplicationController
 
   def login
     @user = User.find_by_email(params[:email])
-    if @user and @user.password == params[:password]
+    hashed = BCrypt::Engine.hash_secret(params[:password], @user.password_salt)
+    puts hashed
+    puts @user.password_hash
+    if @user and @user.password_hash == hashed
       respond_to do |format|
         session[:user_id] = @user.id
         format.json { render json: @user }
@@ -24,11 +27,23 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1
+  # POST /users/1.json
+  def refresh 
+    @user = User.find(params[:id])
+    respond_to do |format|
+      reset_session
+      session[:user_id] = @user.id
+      format.json { render json: @user }
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
     respond_to do |format|
+      session[:user_id] = @user.id
       format.html # show.html.erb
       format.json { render json: @user }
     end
@@ -42,6 +57,12 @@ class UsersController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @user }
     end
+  end
+
+  def upload
+    @user = User.find(params[:id])
+    @user.image = params[:image]
+    @user.save
   end
 
   # GET /users/1/edit
@@ -77,7 +98,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @user }
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }

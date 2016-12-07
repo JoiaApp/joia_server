@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_filter :current_user, :if => :json, :except => [:create, :show]
+ before_filter :current_user, :if => :json, :except => [:create, :show]
 
   # GET /groups
   # GET /groups.json
@@ -95,7 +95,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update_attributes(update_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @group }
       else
         format.html { render action: "edit" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -112,6 +112,13 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url }
       format.json { head :no_content }
+    end
+  end
+
+  def members
+    @group = Group.find_by_guid(params[:id])
+    respond_to do |format|
+      format.json { render json: @group.users }
     end
   end
  

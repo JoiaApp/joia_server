@@ -3,11 +3,11 @@ class ResponsesController < ApplicationController
   # GET /responses.json
   def index
     @group = Group.find_by_guid(params[:group_id])
-    @responses = @group.responses
+    @responses = @group.responses.order('created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @group.responses, :include => [:user, :prompt] }
+      format.json { render :json => @group.responses.order('created_at desc'), :include => [:user] }
     end
   end
 
@@ -65,7 +65,7 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.update_attributes(params[:response])
         format.html { redirect_to @response, notice: 'Response was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @response }
       else
         format.html { render action: "edit" }
         format.json { render json: @response.errors, status: :unprocessable_entity }

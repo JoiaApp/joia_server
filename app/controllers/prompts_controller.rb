@@ -1,4 +1,7 @@
 class PromptsController < ApplicationController
+
+  before_filter :current_user, :except => [:index], :if => :json
+
   # GET /prompts
   # GET /prompts.json
   def index

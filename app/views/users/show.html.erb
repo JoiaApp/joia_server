@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+  <b>Profile Picture:</b><br />
+  <img src="data:image/png;base64,<%= @user.image %>"/>
+</p>
+
 <p>
   <b>Name:</b>
   <%= @user.name %>

@@ -32,7 +32,7 @@ div#container {
 }
 
 div#navigation {
-  background-color: #95CDD9;
+  background-color: rgb(95, 202, 237);
   padding: 10px;
   box-shadow: -1px 3px 3px #aaaaaa;
 }

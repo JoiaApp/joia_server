@@ -20,14 +20,31 @@ users = User.create!([
 ])
 
 user_groups = UserGroup.create!([
-  {user_id: users.first.id, group_id: groups.first.id}
+  {user_id: users.first.id, group_id: groups.first.id},
+  {user_id: users.second.id, group_id: groups.first.id},
+  {user_id: users.third.id, group_id: groups.first.id},
+  {user_id: users.last.id, group_id: groups.first.id}
 ])
+
 
 # Create some Prompts
 prompts = Prompt.create!([
   {phrase: 'I laughed today when...'},
-  {phrase: 'I smiled today because...'}
+  {phrase: 'I smiled today because...'},
+  {phrase: 'I cried today because...'},
+  {phrase: 'I was happy today because...'},
+  {phrase: 'Somebody did something nice...'},
+  {phrase: 'Somebody said something nice...'},
+  {phrase: 'A nice thing happened...'}
 ]);
+
+# Create some responses
+responses = Response.create!([
+  {user_id: users.first.id, group_id: groups.first.id, prompt: prompts.first.phrase, text: "Lorem ipsum..." },
+  {user_id: users.second.id, group_id: groups.first.id, prompt: prompts.first.phrase, text: "Lorem ipsum..." },
+  {user_id: users.third.id, group_id: groups.first.id, prompt: prompts.first.phrase, text: "Lorem ipsum..." },
+  {user_id: users.last.id, group_id: groups.first.id, prompt: prompts.first.phrase, text: "Lorem ipsum..." }
+])
 
 # Create some Sponsors
 sponsors = Sponsor.create!([

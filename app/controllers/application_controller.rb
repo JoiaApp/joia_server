@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => 404
 
 protected
+
   def json
     request.format.json?
   end
@@ -21,7 +22,6 @@ protected
   end
 
   def current_user
-    puts session
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     head :unauthorized unless @current_user.present?
   end

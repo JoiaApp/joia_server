@@ -7,7 +7,12 @@ gem 'rails', '3.2.16'
 
 gem 'puma'
 gem 'sqlite3'
+gem 'activerecord-postgresql-adapter'
 gem 'strong_parameters'
+
+gem 'test-unit'
+gem 'bcrypt', '~> 3.1.5', require: "bcrypt"
+gem 'aws-sdk'
 
 # Gems used only for assets and not required
 # in production environments by default.

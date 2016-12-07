@@ -60,14 +60,14 @@ module Joia
     config.assets.version = '1.0'
 
     config.session_store :cookie_store
+
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      :address              => 'smtp.gmail.com',
+      :address              => 'email-smtp.us-west-2.amazonaws.com',
       :port                 => 587,
-      :domain               => 'gmail.com',
-      :user_name            => 'joiaapp@gmail.com',
-      :password             => 'redacted',
-      :authentication       => 'login',
+      :user_name            => '',
+      :password             => '',
+      :authentication       => :login,
       :enable_starttls_auto => true
     }
     config.action_mailer.raise_delivery_errors = true 
