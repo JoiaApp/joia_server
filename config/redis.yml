@@ -1,0 +1,8 @@
+---
+development:
+  host: localhost
+  port: 6379
+
+production:
+  host: redissidekiq.ppx8qi.0001.usw2.cache.amazonaws.com
+  port: 6379

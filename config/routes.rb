@@ -13,6 +13,7 @@ Joia::Application.routes.draw do
     get 'members', :on => :member
     resources :responses
     resources :prompts
+    resources :mentions
   end
 
   resources :prompts
@@ -20,4 +21,6 @@ Joia::Application.routes.draw do
   resources :responses
 
   root :to => 'users#index'
+
+  #mount Sidekiq::Web, at:'/sidekiq'
 end

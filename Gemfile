@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'activerecord-postgresql-adapter'
 gem 'strong_parameters'
 gem 'figaro'
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 gem 'test-unit'
 gem 'bcrypt', '~> 3.1.5', require: "bcrypt"

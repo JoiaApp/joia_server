@@ -15,8 +15,9 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by_email(params[:email])
     hashed = BCrypt::Engine.hash_secret(params[:password], @user.password_salt)
-    puts hashed
-    puts @user.password_hash
+puts params
+puts @user.password_salt
+puts hashed
     if @user and @user.password_hash == hashed
       respond_to do |format|
         session[:user_id] = @user.id

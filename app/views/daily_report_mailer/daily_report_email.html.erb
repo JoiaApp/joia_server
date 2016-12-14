@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>New posts in <%= @group.name %> for <%= @date %></h1>
+    <p><%= @responses.count %> new posts.</p>
+    <p>You were mentioned <%= @mentions.count %> <%= @mentions.count == 1 ? "time" : "times" %>.</p>
+  </body>
+</html>

@@ -5,13 +5,12 @@
   </head>
   <body>
     <h1>You have received an invite for Joia!</h1>
-    <p>has invited you to join the group <%= @group.name %>!</p>
-    <p>
-    Joia in the Google Play Store: <%= @google_play_store_url %>.
-    </p>
-    Joia in the iOS App Store:: <%= @app_store_url %>.
-    </p>
-    Install the app and then follow this link: <%= @url %>!
+    <p><%= @user.name %> has invited you to join the group <%= @group.name %>!</p>
+    <p> Joia in the Google Play Store: <%= @google_play_store_url %>.  </p>
+    <p>Joia in the iOS App Store:: <%= @app_store_url %>.  </p>
+    <p>Install the app and then follow this link: <a href="<%= @url %>"><%= @url %></a></p>
+    <p><b>Group ID: <%= @group.guid %></b></p>
+    <p><b>Group Passcode: <%= @group.password %></b></p>
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

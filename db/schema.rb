@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161206053148) do
+ActiveRecord::Schema.define(:version => 20161211072446) do
 
   create_table "entries", :force => true do |t|
     t.integer  "user_id"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20161206053148) do
   end
 
   add_index "groups", ["business_id"], :name => "index_groups_on_business_id"
+
+  create_table "mentions", :force => true do |t|
+    t.integer  "response_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "prompts", :force => true do |t|
     t.boolean  "personal"
@@ -102,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20161206053148) do
     t.text     "image"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.datetime "birthday"
   end
 
 end
