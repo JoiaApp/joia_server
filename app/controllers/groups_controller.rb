@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
 
- before_filter :current_user, :if => :json, :except => [:create, :show]
+  SAMPLE_TEXT = "Lorem ipsum dolor sit amet, urna imperdiet pellentesque. Sagittis mauris sodales. Lobortis erat mauris velit amet ut sit, consequat iaculis inceptos sed. Accumsan auctor praesent, blandit exercitationem hac aliquet in aliquam, pellentesque gravida quis non. Ac sociosqu ac et, in ad eget ipsum wisi in nunc.".freeze
+
+  before_filter :current_user, :if => :json, :except => [:create, :show]
 
   # GET /groups
   # GET /groups.json
@@ -64,12 +66,30 @@ class GroupsController < ApplicationController
   # POST groups/[guid]/invite
   def invite
     @group = Group.find_by_guid(params[:id])
-    InviteMailer.invite_email(params[:email], @group, current_user).deliver
+    InviteMailer.invite_email(params[:email], @group, @current_user).deliver
     respond_to do |format|
       format.html { redirect_to @group }
       format.json { head :no_content }
     end
   end
+
+  def new_demo_group
+    avatar = Base64.encode64(File.read(Rails.root.join('public/avatar.png')))
+    name = Faker::Name.last_name
+    @group = Group.create(:name => "#{name} Family 👪 (demo)")
+    5.times do
+      user = User.create(:name => "#{Faker::Name.first_name} #{name}", :email => Faker::Internet.safe_email, :password => 'secret', :image => avatar)
+      UserGroup.create(user_id: user.id, group_id: @group.id)
+      15.times do |i|
+        prompt = Prompt.first(:offset => rand(Prompt.count))
+        Response.create(group_id: @group.id, user_id: user.id, text: SAMPLE_TEXT, prompt: prompt.phrase, created_at: (i / 3).days.ago )
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to @group, notice: 'Group was successfully created.' }
+    end
+  end
+
 
   # POST groups/[guid]/join
   def join
@@ -91,7 +111,6 @@ class GroupsController < ApplicationController
   # PUT /groups/1.json
   def update
     @group = Group.find_by_guid(params[:id])
-
     respond_to do |format|
       if @group.update_attributes(update_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }

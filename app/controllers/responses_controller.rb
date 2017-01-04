@@ -1,4 +1,7 @@
 class ResponsesController < ApplicationController
+
+  before_filter :current_user, :if => :json
+
   # GET /responses
   # GET /responses.json
   def index
@@ -44,8 +47,8 @@ class ResponsesController < ApplicationController
     @group = Group.find_by_guid(params[:group_id])
     create_params = params[:response]
     create_params[:group_id] = @group.id
+    create_params[:user_id] = @current_user.id
     @response = Response.new(create_params)
-
     respond_to do |format|
       if @response.save
         format.html { redirect_to @response, notice: 'Response was successfully created.' }

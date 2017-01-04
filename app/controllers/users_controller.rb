@@ -15,12 +15,11 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by_email(params[:email])
     hashed = BCrypt::Engine.hash_secret(params[:password], @user.password_salt)
-puts params
-puts @user.password_salt
-puts hashed
     if @user and @user.password_hash == hashed
       respond_to do |format|
+        reset_session
         session[:user_id] = @user.id
+        session[:expires_at] = Time.current + 14.days
         format.json { render json: @user }
       end
     else
@@ -46,7 +45,7 @@ puts hashed
     respond_to do |format|
       session[:user_id] = @user.id
       format.html # show.html.erb
-      format.json { render json: @user }
+      format.json { render json: @user, except: [:password_salt, :password_hash] }
     end
   end
 
@@ -56,7 +55,7 @@ puts hashed
     @user = User.new
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @user }
+      format.json { render json: @user, except: [:password_salt, :password_hash] }
     end
   end
 
@@ -82,9 +81,11 @@ puts hashed
     @user = User.new(create_params)
     respond_to do |format|
       if @user.save
+        reset_session
         session[:user_id] = @user.id
+        session[:expires_at] = Time.current + 14.days
         format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
+        format.json { render json: @user, except: [:password_salt, :password_hash] }
       else
         format.html { render action: "new" }
         format.json { render json: { error: @user.errors.first.join(' ').capitalize }, status: :unprocessable_entity }
@@ -99,7 +100,7 @@ puts hashed
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render json: @user }
+        format.json { render json: @user, except: [:password_salt, :password_hash] }
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }

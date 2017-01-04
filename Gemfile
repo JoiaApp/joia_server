@@ -12,6 +12,7 @@ gem 'strong_parameters'
 gem 'figaro'
 gem 'sidekiq'
 gem 'sidekiq-cron'
+gem 'faker'
 
 gem 'test-unit'
 gem 'bcrypt', '~> 3.1.5', require: "bcrypt"

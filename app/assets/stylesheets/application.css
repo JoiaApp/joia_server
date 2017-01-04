@@ -33,8 +33,9 @@ div#container {
 
 div#navigation {
   background-color: rgb(95, 202, 237);
-  padding: 10px;
+  padding: 15px;
   box-shadow: -1px 3px 3px #aaaaaa;
+  margin-bottom: 10px;
 }
 
 div#navigation li {
@@ -65,13 +66,14 @@ input {
 }
 
 input[type=text] {
-  height: 20px;
 }
 
 input[type=submit] {
-  padding: 10px;
-  margin: 0;
+  padding: 5px 15px;
+  margin: 10px 0;
   border: 1px solid #eee;
   color: white;
   margin-bottom: 10px;
 }
+
+*= require bootstrap

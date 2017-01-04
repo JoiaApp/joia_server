@@ -14,7 +14,7 @@
 
 <% @responses.each do |response| %>
   <tr>
-    <td><%= response.text %></td>
+    <td><%= response.prompt %><br /><%= response.text %></td>
     <td><%= response.user.name %></td>
     <td><%= time_ago_in_words(response.created_at) %> ago</td>
   </tr>

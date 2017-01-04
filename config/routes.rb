@@ -11,6 +11,7 @@ Joia::Application.routes.draw do
     post 'join', :on => :member 
     post 'invite', :on => :member 
     get 'members', :on => :member
+    get 'new_demo_group', :as => :demo, :on => :collection
     resources :responses
     resources :prompts
     resources :mentions

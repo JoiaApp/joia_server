@@ -1,5 +1,7 @@
 class MentionsController < ApplicationController
 
+  before_filter :current_user, :if => :json
+
   # POST /responses
   # POST /responses.json
   def create
@@ -10,7 +12,7 @@ class MentionsController < ApplicationController
     respond_to do |format|
       if @mention.save
         format.html { redirect_to @mention, notice: 'Mention was successfully created.' }
-        format.json { render json: @mention, status: :created, location: @mention }
+        format.json { render json: @mention, status: :created }
       else
         format.html { render action: "new" }
         format.json { render json: @mention.errors, status: :unprocessable_entity }
