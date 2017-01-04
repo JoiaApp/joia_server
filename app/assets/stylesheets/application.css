@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap
  */
 
 html {
@@ -75,5 +76,3 @@ input[type=submit] {
   color: white;
   margin-bottom: 10px;
 }
-
-*= require bootstrap
