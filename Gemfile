@@ -7,7 +7,6 @@ gem 'rails', '3.2.16'
 
 gem 'puma'
 gem 'sqlite3'
-gem 'activerecord-postgresql-adapter'
 gem 'strong_parameters'
 gem 'figaro'
 gem 'sidekiq'
