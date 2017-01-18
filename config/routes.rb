@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Joia::Application.routes.draw do
+
+  mount Sidekiq::Web => '/sidekiq'
 
   resources :users do
     post :upload, :on => :member

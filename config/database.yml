@@ -1,6 +1,6 @@
 development:
   adapter: sqlite3
-  database: db/development.sqlite3
+  database: /Users/josh0/development.sqlite3
   pool: 5
   timeout: 5000
 
@@ -10,20 +10,8 @@ test:
   pool: 5
   timeout: 5000
 
-staging:
-  adapter: postgresql
-  encoding: unicode
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
-
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  adapter: sqlite3
+  database: /home/ec2-user/development.sqlite3
+  pool: 5
+  timeout: 5000

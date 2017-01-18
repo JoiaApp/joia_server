@@ -48,4 +48,9 @@ namespace :joia do
     Prompt.delete_all
     prompts = Prompt.create!(PHRASES.map { |phrase| { phrase: phrase } });
   end
+
+  desc "Create a rando user"
+  task :create_user => :environment do
+    User.create!(:name => "Test", :email => Faker::Internet.email)
+  end
 end

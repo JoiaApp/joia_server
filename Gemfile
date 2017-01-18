@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'faker'
+gem 'whenever'
 
 gem 'test-unit'
 gem 'bcrypt', '~> 3.1.5', require: "bcrypt"
