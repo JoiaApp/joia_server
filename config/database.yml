@@ -12,6 +12,6 @@ test:
 
 production:
   adapter: sqlite3
-  database: /home/ec2-user/development.sqlite3
+  database: /home/ec2-user/production.sqlite3
   pool: 5
   timeout: 5000
