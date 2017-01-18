@@ -22,8 +22,6 @@ GEM
       activesupport (= 3.2.16)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-postgresql-adapter (0.0.1)
-      pg
     activeresource (3.2.16)
       activemodel (= 3.2.16)
       activesupport (= 3.2.16)
@@ -70,7 +68,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     multi_json (1.12.1)
-    pg (0.19.0)
     polyglot (0.3.5)
     power_assert (0.4.1)
     puma (3.6.2)
@@ -148,7 +145,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-postgresql-adapter
   aws-sdk
   bcrypt (~> 3.1.5)
   coffee-rails (~> 3.2.1)
