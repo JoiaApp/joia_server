@@ -66,7 +66,9 @@ class GroupsController < ApplicationController
   # POST groups/[guid]/invite
   def invite
     @group = Group.find_by_guid(params[:id])
-    InviteMailer.invite_email(params[:email], @group, @current_user).deliver
+    params[:email].split.each do |email|
+      InviteMailer.invite_email(email, @group, @current_user).deliver
+    end
     respond_to do |format|
       format.html { redirect_to @group }
       format.json { head :no_content }

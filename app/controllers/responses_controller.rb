@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @group.responses.order('created_at desc'), :include => [:user] }
+      format.json { render :json => @group.responses.order('created_at desc'), :include => [:user, :mentions => { :include => :user }] }
     end
   end
 
