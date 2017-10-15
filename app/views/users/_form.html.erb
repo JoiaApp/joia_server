@@ -23,6 +23,10 @@
     <%= f.label :Password %><br />
     <%= f.text_field :password %>
   </div>
+  <div class="field">
+    <%= f.label "Needs Reset" %><br />
+    <%= f.check_box :needs_reset %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -9,10 +9,9 @@ gem 'puma'
 gem 'sqlite3'
 gem 'strong_parameters'
 gem 'figaro'
-gem 'sidekiq'
-gem 'sidekiq-cron'
 gem 'faker'
 gem 'whenever'
+gem 'mandrill-api'
 
 gem 'test-unit'
 gem 'bcrypt', '~> 3.1.5', require: "bcrypt"

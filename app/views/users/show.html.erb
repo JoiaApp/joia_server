@@ -18,6 +18,11 @@
   <%= '*' * @user.password.length if @user.password.present? %>
 </p>
 
+<p>
+  <b>Needs Reset:</b>
+  <%= @user.needs_reset? ? "Yes" : "No" %>
+</p>
+
 
 <p><b>Group Membership:</b></p>
 <% @user.groups.each do |group| %>

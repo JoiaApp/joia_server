@@ -1,0 +1,14 @@
+<h3>Environment Variables</h3>
+
+<dl>
+  <% ENV.each do |name, value| %>
+    <dt><%= name %></dt>
+    <dd><%= value %></dd>
+  <% end %>
+</dl>
+
+<h3>Version</h3>
+<pre><%= Rails.configuration.sha %></pre>
+
+<br />
+<br />

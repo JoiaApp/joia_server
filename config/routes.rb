@@ -1,14 +1,15 @@
-require 'sidekiq/web'
-require 'sidekiq/cron/web'
+#require 'sidekiq/web'
+#require 'sidekiq/cron/web'
 
 Joia::Application.routes.draw do
 
-  mount Sidekiq::Web => '/sidekiq'
+  #mount Sidekiq::Web => '/sidekiq'
 
   resources :users do
     post :upload, :on => :member
     post :login, :on => :collection
     post :refresh, :on => :member
+    post :reset_password, :on => :collection
     get :groups, :on => :member
   end
 
@@ -27,6 +28,8 @@ Joia::Application.routes.draw do
   resources :responses
 
   root :to => 'users#index'
+
+  match '/about' => 'application#about'
 
   #mount Sidekiq::Web, at:'/sidekiq'
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :current_user, :if => :json, :except => [:login, :create]
+  before_filter :current_user, :if => :json, :except => [:login, :create, :reset_password]
 
   # GET /users
   # GET /users.json
@@ -9,6 +9,20 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
+    end
+  end
+
+  # POST /users/reset_password
+  def reset_password
+    @user = User.find_by_email(params[:email])
+    if @user
+      new_password = SecureRandom.hex[0..9]
+      @user.password = new_password
+      @user.save!
+      ::Joia::ResetPasswordEmail.new(@user.email, @user.name, new_password).send
+      head 204
+    else
+      head 404
     end
   end
 

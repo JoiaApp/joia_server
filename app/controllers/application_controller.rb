@@ -1,5 +1,4 @@
 class NotAuthorized < Exception
-
 end
 
 class ApplicationController < ActionController::Base
@@ -8,6 +7,9 @@ class ApplicationController < ActionController::Base
   before_filter :current_user, :if => :json
 
   rescue_from ActiveRecord::RecordNotFound, :with => 404
+
+  def about
+  end
 
 protected
 
@@ -25,4 +27,5 @@ protected
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     head :unauthorized unless @current_user.present?
   end
+
 end

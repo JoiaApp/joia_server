@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170104053749) do
+ActiveRecord::Schema.define(:version => 20171015204727) do
 
   create_table "entries", :force => true do |t|
     t.integer  "user_id"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20170104053749) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.datetime "birthday"
+    t.boolean  "needs_reset"
   end
 
 end
