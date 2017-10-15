@@ -19,7 +19,7 @@ protected
 
   def authenticate_basic
     authenticate_or_request_with_http_basic('Administration') do |username, password|
-      username == 'admin' && password == 'secret'
+      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PW']
     end
   end
 

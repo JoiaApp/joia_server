@@ -31,7 +31,7 @@ HEREDOC
     end
 
     def send
-      mandrill = Mandrill::API.new 'i1Eu_yKetF6po1Cm9UhhSw'
+      mandrill = Mandrill::API.new ENV['MANDRILL_KEY']
       template_name = "reset-password"
       template_content = []
       message = {
@@ -58,7 +58,7 @@ HEREDOC
     end
 
     def send
-      mandrill = Mandrill::API.new 'i1Eu_yKetF6po1Cm9UhhSw'
+      mandrill = Mandrill::API.new ENV['MANDRILL_KEY']
       template_name = "group-invite"
       template_content = [
         {"name" => "header", "content"=>INVITE_HEADER},
