@@ -74,6 +74,6 @@ module Joia
     config.action_mailer.perform_deliveries = true
 
     # Custom
-    config.sha = "6f57145a52aa5d40bef27578911033cf061e20c6"
+    config.sha = "fa3b59a1373209529860a3e56cceee6e0ad9968e"
   end
 end
