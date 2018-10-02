@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def login
     @user = User.find_by_email(params[:email])
-    hashed = BCrypt::Engine.hash_secret(params[:password], @user.password_salt)
+    hashed = BCrypt::Engine.hash_secret(params[:password], @user.password_salt) if @user
     if @user and @user.password_hash == hashed
       respond_to do |format|
         reset_session
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      head 403
+      head 404
     end
   end
 
