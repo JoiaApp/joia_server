@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
     @user = User.find(params[:user_id])
     if @group and @user
       params[:email].split.each do |email|
-        ::Joia::InviteEmail.new(email, group, user).send
+        ::Joia::InviteEmail.new(email, @group, @user).send
       end
       head 204
     else
