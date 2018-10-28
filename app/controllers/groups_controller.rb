@@ -66,12 +66,14 @@ class GroupsController < ApplicationController
   # POST groups/[guid]/invite
   def invite
     @group = Group.find_by_guid(params[:id])
-    params[:email].split.each do |email|
-      InviteMailer.invite_email(email, @group, @current_user).deliver
-    end
-    respond_to do |format|
-      format.html { redirect_to @group }
-      format.json { head :no_content }
+    @user = User.find(params[:user_id])
+    if @group and @user
+      params[:email].split.each do |email|
+        ::Joia::InviteEmail.new(email, group, user).send
+      end
+      head 204
+    else
+      head 404
     end
   end
 
