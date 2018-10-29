@@ -64,14 +64,14 @@ HEREDOC
         {"name" => "header", "content"=>INVITE_HEADER},
         {"name" => "invite", "content"=>INVITE_BODY}
       ]
-      # TODO: Add group code
       message = {
         "subject" => "You've been invited to Joia!",
         "from_email" => "noreply@joiaapp.com",
         "to" => 
             [{"type" => "to", "email" => @email, "name" => @email}],
         "merge_vars" =>
-            [{"vars" => [{"content" => @user.name, "name" => "INVITER_NAME"}, {"content" => "Joia Devs", "name" => "GROUP_NAME"}],
+            # TODO: Add group code & group id
+            [{"vars" => [{"content" => @user.name, "name" => "INVITER_NAME"}, {"content" => @group.name, "name" => "GROUP_NAME"}],
                 "rcpt" => @email}]
       }
       async = true
